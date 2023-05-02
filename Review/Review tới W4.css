@@ -1,0 +1,211 @@
+/*Thẻ trong HTLM
+<h1>: heading
+<p>: paragragh
+<img>: image
+<a>: anchor (neo liên kết)
+<div>: khối bao quanh nội dung, phần tử
+<button>
+<table> { Tiêu đề: <thead> <th>]; [Body: <tboday> <tr> <td>]
+<ul><li>: unordered list, list-item
+<ol><li>: ordered list, list-item
+<form><input> */
+
+/* Attribute
+title trong <p>
+onlick trong button
+Style => color,font-tyle, ...
+href: http://google.com.vn/ trong <a>
+src: ./image trong <img> 
+alt: "Đây là tôi" trong <img>
+lang: trong <html>
+span: */
+
+/*Width và height trong html:
+Tổng width = width + left margin + right margin + left border + right border + left padding + right padding;
+Tổng height= height + top margin + bottom margin + top border + bottom border + top padding + bottom padding;*/
+
+/* Box model: 
+Thứ tự: Margin-Border-Padding-Content 
+Vị trí: Top-right-bottom-left (Theo chiều kim đồng hồ)
++ Margin: Khoảng cách tính từ bên ngoài của phần tử
++ Border:Đường viền của phần tử
++ Padding: Đường viền của phần tử
++ Content:Nội dung trong phần tử
++ Actual Width- Height là chiều ngang và dọc của Border
+
+Display: BLOCK - INLINE - INLINE BLOCK (display:block)
+1/ Block
+- Các phần tử sẽ chiếm không gian và nằm 1 mình trên hàng
+- Có tác động padding (top-right-bottom-left)
+- Element sẽ rớt xuống một dòng mới
+- Thẻ mặc định: <div>,<h1>, <p>, <section>, ....
+
+2/ Inline
+- Các phần tử nằm cạnh nhau sẽ hiển thị ra 1 hàng ngang
+- Không tác động padding-top và padding-bottom
+- Thẻ mặc định: <a>,<span>, <b>, <i>,... 
+
+3/ Inline-block
+- Các phần tử nằm cạnh nhau sẽ nằm trên 1 hàng
+- Element sẽ không rớt xuống dòng mới trên trang
+- Có tác động padding (top-right-bottom-left)
+- Tránh chồng lên phần tử khác => tách ra a{display="inline-block"} */
+
+/*Box-sizing:
+Thuộc tính của box-sizing: 
+- Content-box: tất cả element đều được gán mặc định
+- Border-box: 
+    + thuộc tính width và height sẽ tự động bao gồm luôn content, padding và border
+    + chiều rộng của content sẽ tự động co giãn tương ứng nếu chúng ta thay đổi padding và border => đảm bảo kích thước của cả element sẽ không thay đổi, đồng nghĩa với việc layout tổng sẽ không thay đổi.
+Lưu ý: đặt box-sizing:border-box ngay đầu tiên (*{box-sizing:border-box})
+
+Position:
+1/ Static: Dạng mặc định - sẽ hiển thị theo đúng thứ tự của nó
+2/ Relative: 
+    - Lấy chính mình làm gốc toạ độ
+    - Dạng mặc định - sẽ hiển thị theo đúng thứ tự của nó
+3/ Absolute: (thẻ con phụ thuộc thẻ cha-thường là phụ thuộc vào relative)
+    - Giá trị này sẽ giúp định vị trí tuyệt đối cho thành phần theo thành phần bao ngoài
+    - phụ thuộc vào thẻ cha gần nhất có thuộc tính position => Lấy thẻ cha làm gốc toạ độ 
+4/ Fixed: 
+    - Định vị và phần tử luôn cố định một chỗ
+    - phụ thuộc cửa sổ trình duyệt
+    - Khi bạn scroll trình duyệt, phần tử sẽ không thay đổi.
+5/ Sticky:
+    - không dc sử dụng trên nhiều trình duyệt
+    - nếu k dc quyền sử dụng sticky => chọn fixed
+6/ Inherit: Xác định thừa hưởng thuộc tính từ thành phần cha (thành phần bao ngoài).
+
+Z-index: 5px; 
+Mỗi element trong trang web sẽ hiển thị theo 3 trục:
+- Trục x: dọc
+- Trục y: ngang
+- Trục z: cao
+- z-index càng cao thì element đó đứng trước và hiện lên trên.
+- có tác dụng position: relative, absolute, fixed
+*/
+
+/* Display: flex/ inline-flex: giúp sắp xếp, bố cục các thành phần khối (block) một cách dễ dàng, linh hoạt hơn trước
+- Flex: Giúp các thành phần linh hoạt.
+- Inline-flex: Giúp các thành phần linh hoạt dưới dạng các inline (1 hàng ngang)
+*/
+
+/*Flexbox
+Định nghĩa::
+- là một kiểu bố cục trang có khả năng tự cân đối kích thước
+- tự thay đổi chiều rộng/chiều cao và thứ tự phần tử bên trong để phù hợp với tất cả các loại thiết bị hiển thị và kích thước màn hình
+Bố cục::
+- Trong khung lớn (parent container) sẽ bao gồm flex container + immediate children 
+- Trong flex container, sẽ chứa flex item
+Thuộc tính của Flex-container:
+1/ Display: flex hoặc inline-flex (.container{display:flex})
+2/ Flex-direction: xác định hướng của main-axis để container sắp xếp các item
+(.container{flex-direction:row, column})
+    + Row (hàng): trục chính trái -> phải (row-reverse thì ngược hướng)
+    + Column (cột): trục chính trên -> xuống (row-reverse thì ngược hướng)
+3/ Flex-wrap: cho phép item tự động xuống dòng khi kích thước container thay đổi.
+(.container{flex-wrap: wrap/nowrap/wrap-reverse})
+    + Wrap: container tự điều chỉnh size, nếu k đủ thì tự xuống dòng
+    + nowrap: mặc định, tất cả các item sẽ nằm trên một dòng.
+4/ Flex-flow: Flex-direction + Flex-wrap
+    - Flex-flow: row wrap
+5/ Justify-content (trục chính-main axis):
+    - điều chỉnh vị trí bắt đầu 
+    - căn chỉnh các item bên trong container the chiều nào tùy thuộc vào flex-direction.
+(.container{justify-content: flex-start/end;center; space-between/around/evenly})
+    + flex-start/end: items sẽ bắt đầu từ bên trái (main-start) -> phải (main-end)/ phải -> trái
+    + center: items sẽ ở giữa theo chiều main-axis
+    + space-between: 
+        - các item sẽ có khoảng cách giữa các phần tử bằng nhau do container sẽ tự động căn khoảng cách
+        - items sẽ bắt đầu từ bên trái (main-start) -> phải (main-end)
+    + space-around (~ space between)
+        - mỗi item có khoảng cách 2 bên cạnh
+        - những khoảng cách này bằng nhau
+    + space-evenly: items dc auto điều chỉnh sao mà khoảng cách giữa:
+        - hai item bất kỳ: bằng nhau
+        - giữa item: bằng nhau.
+        - các lề: bằng nhau
+7/ Align-items (trục phụ-cross axis): 
+    - điều chỉnh vị trí bắt đầu 
+    - căn chỉnh các item bên trong container theo chiều nào tùy thuộc vào flex-direction.
+.container{align-items: stretch | flex-start | flex-end | center | baseline;}
+    + Stretch:
+        - giá trị mặc định: auto điều chỉnh các phần tử để lấp đầy container chứa nó
+        - Đặc biệt: ưu tiên giá trị height/width nếu có (khi đó item sẽ không cao full mà chỉ lấy giá trị height/width mà bạn set)
+    + Flex-start/end: item sẽ bắt đầu từ lề:
+        - start (trái) /end (phải) của container tuỳ theo flex-direction (column- cột)
+        - start (trên) /end (dưới) của container tuỳ theo flex-direction (row-ngang)
+    + Center: item sẽ căn giữa theo chiều của cross-axis
+    + Baseline: item được căn chỉnh theo đường cơ sở của chúng.*/
+
+/*Thuộc tính Flex-items: 
+1/ order: điều khiển thứ tự mà chúng xuất hiện trong vùng chứa flex
+
+2/ flex-grow (giãn ra) (kích thước của phần tử có thể ảnh hưởng tới kích thước của khung) (chia màn hình thành 2 phần bằng nhau)
+** Lưu ý: lấy FLEX thay cho FLEX- GROW do FLEX không bị phần tử bên trong ảnh hưởng tới kích thước của khung
+- Linh động với tỷ lệ cho tất cả phần tử 1:1 (mặc dù có set flex-grow: 999:999 ~ 1:1)
+- dựa vào flex-direction: row/column
+    + flex-direction: row (hàng)
+    Vd: Flex-direction: row; flex-grow: 100px; height: 50px    
+    + flex-direction: column (cột)
+    Vd: Flex-direction: column; flex-grow: 100px; width: 50px
+Ví dụ
+    <div class="flex-container">
+        <div style="flex-grow: 1">1</div>
+        <div style="flex-grow: 1">2</div>
+        <div style="flex-grow: 8">3</div> (số 8: độ rộng của box 3)
+    </div>
+  
+3/ flex-shrink (co lại)
+- ngược lại với flex-grow
+- không giãn ra mà lại co lại khi chúng ta thay đổi độ rộng của container xuống
+
+4/ flex-basis: Set chiều rộng hoặc chiều cao của phần tử dựa vào:
+    flex-direction: row (hàng)
+    Vd: Flex-direction: row; flex-basic: 100px; height: 50px    
+    - flex-direction: column (cột)
+    Vd: Flex-direction: column; flex-basic: 100px; width: 50px
+
+5/ flex/inline-flex
+6/ align-self: thuộc tính sử dụng căn chỉnh cho từng item được chỉ định.
+.Flex-item{align-self: stretch/start/end/center}
+*/ 
+
+
+/* GRID TRONG CSS:
+Grid layout (bố cục lưới): 
+    - bổ sung cho ngôn ngữ CSS để giải quyết các vấn đề về layout 2 chiều (x,y)
+    - giải quyết các vấn đề khó khăn khi layout như kích thước, căn chỉnh và kiến trúc thiết kế (đặc biệt trong float hoặc flexbox)
+Bố cục:
+<div class="container">
+    <div class="item"> </div>
+        <p class="sub-item"> </p>
+</div>
+Thuật ngữ:
+    1/ Grid container/items
+    2/ Grid line
+    3/ Grid track
+    4/ Grid cell
+    5/ Grid area
+Thuộc tính:
+    1/ Wrapper: .wrapper{display: grid; /* hoặc inline-grid | subgrid} 
+    2/ Column/row:
+        grid-template-columns (cột): các giá trị sẽ tương ứng với chiều rộng của các cột lần lượt từ trái sang phải.
+        grid-template-rows: các giá trị sẽ tương ứng với chiều cao của các hàng lần lượt từ trên xuống dưới.
+    Vd: grid-template-columns: 5px, 2px, 6px tương ứng chiều rộng của 3 cột
+    3/ Gaps: grid-column-gap + grid-row-gap
+        grid-gap: 10px 6px tương ứng với gap của column và row
+Example:
+grid-column: 1 / span 3 => Cột thứ 1 và auto giãn ra 3 cột*/
+
+*{
+    box-sizing: border-box;
+}
+
+.box-position{
+    /* position:relative; */
+    position:-webkit-sticky; /*hỗ trợ trình duyệt cho safari*/
+    top:0px;
+    right:0px; /*Vị trí của box là nằm trên gốc, phía phải*/
+}
+
