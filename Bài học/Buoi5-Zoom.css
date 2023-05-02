@@ -1,0 +1,124 @@
+/*Responsive: thay đổi giao diện desktop-screen
+<Meta>: điều chỉnh chiều rộng  của viewport bằng chiều rộng của màn hình thiết bị
+*** Lưu ý khi làm responsive:
+    - Không style cho các thẻ có chiều rộng cố định quá lớn
+    - Không để nội dung phụ thuộc quá nhiều của MỘT kích thước màn hình cố định
+    - Hạn chế sử dụng các giá trị có độ đo tuyệt đối (px, pt, inch, cm,..)
+    - NÊN sử dụng giá trị có độ đo tương đối (%, vw, em, rem)
+
+Media Queries: cho phép áp dụng tính CSS lên phần tử khi gặp điều kiện cố định
+Vd:
+- Kích thước màn hình >= 756px, cho màn hình "RED"
+Code: @media mediatype and (mediafeature){
+    Code CSS
+1/ Mediatype: 
+    all: tất cả thiết bị media
+    screen: hiển thị trên màn hình thiết bị
+    print: hiện thị trên màn hình khi in
+    speech: thiết bị có chức năng đọc ' nội" dung trên màn hình
+2/ Mediafeature: điều kiện khi áp dụng CSS
+    min-width: kích thước nhỏ nhất của viewport
+    max-width: kích thước lớn nhất của viewport
+    orientation: định hướng khung hình (xoay ngang, xoay dọc)
+    aspect-ratio: tỉ lệ khung hình
+
+Breakpoints: là những giá trị chiều rộng cố định mà khi vượt qua nó => một màn hình khác
+- Web: what is my screen solution (biết dc chiều cao/rộng thiết bị của mình)
+- 
+
+Mobile First: triết lý thiết kế ứng dụng web hiển thị trên mobile trước, sau đó tablet, desktop
+
+*/
+@media screen{
+    /*Code CSS ở đây*/
+    body{
+        background-color: pink;
+        color: black;
+        margin: 0;      
+}
+}
+@media print{
+    body{
+        background-color: blue;
+        color: white;
+        margin: 0;
+    }
+}
+
+@media not print{
+    body{
+        color: blue;
+    }
+}
+.header{
+    position: sticky;
+    width:100%;
+    height: 80px;
+    background-color: pink;
+    color: blue;
+}
+.header .toogle-aside-left-btn{
+    width: 30px;
+    height: 30px;
+    background-color: darkorchid;
+    border: 1pz solid darkorchid;
+    display:none; /* khi nào lên kích thước <= 412px thì hiển thị nút*/
+}
+.container{
+    display: flex;
+    height: 800px;
+    align-items: stretch;
+}
+.aside-left, .aside-right{
+    background-color: lightgreen;
+    color:black;
+    width: 25%; /* tránh dùng tuyệt đối px,... chỉ dùng %*/
+}
+.content{
+    background-color: lightsalmon;
+    color: brown;
+    width:100%;
+}
+.footer{
+    background-color: aqua;
+    color:black;
+    height: 50px;
+}
+@media screen and (max-width:412px) {
+    .aside-left, .aside-right{
+        display: none;
+    }
+    .content{
+        width: 100%;
+    }
+    .header .toogle-aside-left-btn{
+        display: inline-block; /* khi nào lên kích thước <= 412px thì hiển thị nút*/
+    }
+}
+/* @media screen and  (min-width: 0px) and (max-width:1024px) {
+    .aside-left, .aside-right{
+        display:none;
+    }
+    .content{
+        width: 100%;
+    }
+} */
+
+/*Đơn vị rem trong css*/
+html{
+    font-size: 30px;
+}
+body{
+    font-size: 15px;
+}
+.my-paragraph{
+    font-size: 2rem; 
+    /*rem: căn theo font-size của html: 2*15 =30px*/
+    /*em: căn theo font-size của phần tử cha: 2*50 =100px*/
+}
+
+
+
+/* max/min-width:
+Max-width: desktop
+min-width: mobile
